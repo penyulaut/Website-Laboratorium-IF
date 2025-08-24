@@ -39,8 +39,9 @@ const Navbar = () => {
       <div className={`navbar lg:flex ${menuOpen ? "flex" : "hidden"} flex-col lg:flex-row absolute lg:static top-20 right-0 bg-zinc-900 lg:bg-transparent w-full lg:w-auto px-7 lg:px-0 py-5 lg:py-0 shadow-lg lg:shadow-none z-50`}>
         <ul className="flex flex-col lg:flex-row align-center gap-5">
           <li><a href="#" className="sm:text-lg text-base font-medium">Beranda</a></li>
-          <li><a href="#tentang" className="sm:text-lg text-base font-medium">About</a></li>
+          <li><a href="#tentang" className="sm:text-lg text-base font-medium">Tentang</a></li>
           <li><a href="#" className="sm:text-lg text-base font-medium">Blog</a></li>
+          <li><a href="#calendar" className="sm:text-lg text-base font-medium">Jadwal</a></li>
           <li><a href="#" className="sm:text-lg text-base font-medium">Kontak</a></li>
         </ul>
       </div>
