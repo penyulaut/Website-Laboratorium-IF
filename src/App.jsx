@@ -24,12 +24,14 @@ function App() {
               className="bg-violet-700 p-4 rounded-2xl hover:bg-violet-600"
             >
               Lihat Jadwal Praktikum
+              <i className="ri-calendar-schedule-line ri-lg p-2"></i>
             </a>
             <a
               href=""
               className="bg-zinc-700 p-4 rounded-2xl hover:bg-zinc-600"
             >
               Reservasi Lab
+              <i className="ri-service-line ri-lg p-2"></i>
             </a>
           </div>
         </div>
@@ -57,10 +59,15 @@ function App() {
                   menguasai keterampilan teknis yang dibutuhkan di dunia kerja.
                   Dengan pengalaman dan pengetahuan yang luas, kami berkomitmen
                   untuk menciptakan lingkungan belajar yang inspiratif dan
-                  inovatif bagi seluruh civitas akademika.                   
+                  inovatif bagi seluruh civitas akademika.
                 </p>
                 <div className="mt-6">
-                  <a href="" className="bg-violet-700 p-5 rounded-2xl hover:bg-violet-600">Lihat Selengkapnya</a>
+                  <a
+                    href=""
+                    className="bg-violet-700 p-5 rounded-2xl hover:bg-violet-600"
+                  >
+                    Lihat Kepengurusan <i className="ri-team-fill ri-lg"></i>
+                  </a>
                 </div>
               </div>
             </div>
@@ -88,8 +95,8 @@ function App() {
                 Ruang Komputer
               </h2>
               <p className="text-white">
-                Dilengkapi dengan komputer terbaru dan perangkat lunak
-                terkini untuk mendukung pembelajaran Anda.
+                Dilengkapi dengan komputer terbaru dan perangkat lunak terkini
+                untuk mendukung pembelajaran Anda.
               </p>
             </div>
             <div className="p-6 text-center">
@@ -128,7 +135,7 @@ function App() {
       {/* Fasilitas Section End */}
 
       {/* Blog Section Start */}
-      <section className="blog py-9"> 
+      <section className="blog py-9">
         <div className="mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-extrabold text-violet-800 mb-4 pt-9">
@@ -158,7 +165,7 @@ function App() {
                   Baca Selengkapnya &rarr;
                 </a>
               </div>
-            </div>            
+            </div>
             <div className="bg-zinc-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
               <img
                 src={laptop}
@@ -177,7 +184,7 @@ function App() {
                   Baca Selengkapnya &rarr;
                 </a>
               </div>
-            </div>            
+            </div>
             <div className="bg-zinc-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
               <img
                 src={laptop}
@@ -196,7 +203,7 @@ function App() {
                   Baca Selengkapnya &rarr;
                 </a>
               </div>
-            </div>            
+            </div>
             <div className="bg-zinc-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
               <img
                 src={laptop}
@@ -215,7 +222,7 @@ function App() {
                   Baca Selengkapnya &rarr;
                 </a>
               </div>
-            </div>            
+            </div>
           </div>
         </div>
       </section>
@@ -239,7 +246,8 @@ function App() {
               Hubungi Kami
             </h1>
             <p className="text-lg">
-              Punya pertanyaan atau butuh bantuan? Jangan ragu untuk menghubungi kami.
+              Punya pertanyaan atau butuh bantuan? Jangan ragu untuk menghubungi
+              kami.
             </p>
           </div>
           <form className="max-w-xl w-full mx-auto bg-zinc-800 p-6 rounded-lg shadow-lg">
@@ -294,7 +302,7 @@ function App() {
           </form>
         </div>
       </section>
-      {/* Kontak Section End */}  
+      {/* Kontak Section End */}
     </>
   );
 }
