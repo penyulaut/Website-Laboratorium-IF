@@ -1,4 +1,6 @@
 import heroimg from "./assets/heroimg.svg";
+import laptop from "./assets/laptop.jpg";
+import komputer from "./assets/komputer.svg";
 import CalendarPage from "./pages/Calendar";
 
 function App() {
@@ -37,7 +39,7 @@ function App() {
 
       {/* Tentang section Start */}
       <section className="tentang" id="tentang">
-        <div className="mx-auto my-5 px-4 py-9 bg-zinc-800">
+        <div className="mx-auto my-5 px-4 py-9 rounded-3xl bg-zinc-800">
           <div className="mb-2">
             <h1 className="text-4xl text-center font-extrabold text-violet-800 mb-4 pt-9">
               Tentang Kami
@@ -67,8 +69,66 @@ function App() {
       </section>
       {/* Tentang section End */}
 
+      {/* Fasilitas Section Start */}
+      <section className="fasilitas py-9">
+        <div className="mx-auto px-4">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-extrabold text-violet-800 mb-4 pt-9">
+              Fasilitas Kami
+            </h1>
+            <p className="text-lg">
+              Kami menyediakan berbagai fasilitas modern untuk mendukung
+              kegiatan praktikum dan riset Anda.
+            </p>
+          </div>
+          <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+            <div className="p-6 text-center">
+              <img src={komputer} alt="" />
+              <h2 className="text-2xl font-semibold text-violet-700 mb-2 mt-3">
+                Ruang Komputer
+              </h2>
+              <p className="text-white">
+                Dilengkapi dengan komputer terbaru dan perangkat lunak
+                terkini untuk mendukung pembelajaran Anda.
+              </p>
+            </div>
+            <div className="p-6 text-center">
+              <img src={komputer} alt="" />
+              <h2 className="text-2xl font-semibold text-violet-700 mb-2 mt-3">
+                Perangkat Jaringan
+              </h2>
+              <p className="text-white">
+                Fasilitas jaringan lengkap termasuk router, switch, dan alat
+                lainnya untuk praktikum jaringan.
+              </p>
+            </div>
+            <div className="p-6 text-center">
+              <img src={komputer} alt="" />
+              <h2 className="text-2xl font-semibold text-violet-700 mb-2 mt-3">
+                Laboratorium Riset
+              </h2>
+              <p className="text-white">
+                Ruang khusus untuk riset dengan peralatan canggih dan dukungan
+                teknis.
+              </p>
+            </div>
+            <div className="p-6 text-center">
+              <img src={komputer} alt="" />
+              <h2 className="text-2xl font-semibold text-violet-700 mb-2 mt-3">
+                Perpustakaan Digital
+              </h2>
+              <p className="text-white">
+                Akses ke berbagai sumber belajar digital dan jurnal ilmiah
+                terbaru.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Fasilitas Section End */}
+
       {/* Blog Section Start */}
-      <section className="blog py-9">
+      <section className="blog py-9"> 
         <div className="mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-extrabold text-violet-800 mb-4 pt-9">
@@ -80,9 +140,9 @@ function App() {
             </p>
           </div>
           <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-            <div className="bg-zinc-200 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
+            <div className="bg-zinc-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
               <img
-                src={heroimg}
+                src={laptop}
                 alt="Artikel 1"
                 className="w-full h-48 object-cover"
               />
@@ -90,7 +150,7 @@ function App() {
                 <h2 className="text-2xl font-semibold text-violet-700 mb-2">
                   Tips Memilih Laptop untuk Mahasiswa
                 </h2>
-                <p className="text-zinc-600 mb-4">
+                <p className="text-white mb-4">
                   Memilih laptop yang tepat sangat penting bagi mahasiswa.
                   Berikut beberapa tips yang bisa membantu Anda.
                 </p>
@@ -98,64 +158,64 @@ function App() {
                   Baca Selengkapnya &rarr;
                 </a>
               </div>
-            </div>
-            <div className="bg-zinc-200 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
+            </div>            
+            <div className="bg-zinc-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
               <img
-                src={heroimg}
-                alt="Artikel 2"
+                src={laptop}
+                alt="Artikel 1"
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
                 <h2 className="text-2xl font-semibold text-violet-700 mb-2">
-                  Mengenal Cloud Computing
+                  Tips Memilih Laptop untuk Mahasiswa
                 </h2>
-                <p className="text-zinc-600 mb-4">
-                  Cloud computing semakin populer di dunia teknologi. Pelajari
-                  konsep dasar dan manfaatnya di sini.
+                <p className="text-white mb-4">
+                  Memilih laptop yang tepat sangat penting bagi mahasiswa.
+                  Berikut beberapa tips yang bisa membantu Anda.
                 </p>
                 <a href="#" className="text-violet-700 font-medium">
                   Baca Selengkapnya &rarr;
                 </a>
               </div>
-            </div>
-            <div className="bg-zinc-200 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
+            </div>            
+            <div className="bg-zinc-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
               <img
-                src={heroimg}
-                alt="Artikel 3"
+                src={laptop}
+                alt="Artikel 1"
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
                 <h2 className="text-2xl font-semibold text-violet-700 mb-2">
-                  Panduan Dasar Pemrograman Python
+                  Tips Memilih Laptop untuk Mahasiswa
                 </h2>
-                <p className="text-zinc-600 mb-4">
-                  Python adalah bahasa pemrograman yang mudah dipelajari. Ikuti
-                  panduan dasar ini untuk memulai.
+                <p className="text-white mb-4">
+                  Memilih laptop yang tepat sangat penting bagi mahasiswa.
+                  Berikut beberapa tips yang bisa membantu Anda.
                 </p>
                 <a href="#" className="text-violet-700 font-medium">
                   Baca Selengkapnya &rarr;
                 </a>
               </div>
-            </div>
-            <div className="bg-zinc-200 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
+            </div>            
+            <div className="bg-zinc-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform">
               <img
-                src={heroimg}
-                alt="Artikel 3"
+                src={laptop}
+                alt="Artikel 1"
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
                 <h2 className="text-2xl font-semibold text-violet-700 mb-2">
-                  Panduan Dasar Pemrograman Python
+                  Tips Memilih Laptop untuk Mahasiswa
                 </h2>
-                <p className="text-zinc-600 mb-4">
-                  Python adalah bahasa pemrograman yang mudah dipelajari. Ikuti
-                  panduan dasar ini untuk memulai.
+                <p className="text-white mb-4">
+                  Memilih laptop yang tepat sangat penting bagi mahasiswa.
+                  Berikut beberapa tips yang bisa membantu Anda.
                 </p>
                 <a href="#" className="text-violet-700 font-medium">
                   Baca Selengkapnya &rarr;
                 </a>
               </div>
-            </div>
+            </div>            
           </div>
         </div>
       </section>
@@ -171,7 +231,7 @@ function App() {
       </div>
       {/* Kalender Section End */}
 
-      {/* Kontak Section Start*/}
+      {/* Kontak Section Start */}
       <section className="kontak py-9">
         <div className="mx-auto px-4">
           <div className="text-center mb-12">
@@ -179,11 +239,10 @@ function App() {
               Hubungi Kami
             </h1>
             <p className="text-lg">
-              Punya pertanyaan atau butuh bantuan? Jangan ragu untuk menghubungi
-              kami.
+              Punya pertanyaan atau butuh bantuan? Jangan ragu untuk menghubungi kami.
             </p>
           </div>
-          <form className="max-w-xl mx-auto bg-zinc-800 p-6 rounded-lg shadow-lg">
+          <form className="max-w-xl w-full mx-auto bg-zinc-800 p-6 rounded-lg shadow-lg">
             <div className="mb-4">
               <label
                 htmlFor="name"
@@ -235,7 +294,7 @@ function App() {
           </form>
         </div>
       </section>
-      {/* Kontak Section End*/}
+      {/* Kontak Section End */}  
     </>
   );
 }

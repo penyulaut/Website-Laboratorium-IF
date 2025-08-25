@@ -7,7 +7,7 @@ import listPlugin from "@fullcalendar/list";
 export default function CalendarPage() {
   return (
     <div className="p-6" id="calendar">
-      <h2 className="text-2xl font-bold mb-4">📅 Jadwal Laboratorium</h2>
+      <h2 className="text-center text-4xl font-extrabold text-violet-800 mb-4 py-9">Jadwal Laboratorium</h2>
 
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
