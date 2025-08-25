@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DateTimeSlotPicker from '../components/DateTimeSlotPicker';
 
 export default function ReservationPage() {
   const [form, setForm] = useState({ name: '', email: '', purpose: '', start: '', end: '' });
@@ -45,16 +46,12 @@ export default function ReservationPage() {
             <label className="block text-sm mb-1">Keperluan / Judul</label>
             <input name="purpose" value={form.purpose} onChange={onChange} required className="w-full p-2 rounded bg-zinc-900 border border-zinc-700" />
           </div>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm mb-1">Mulai</label>
-              <input type="datetime-local" name="start" value={form.start} onChange={onChange} required className="w-full p-2 rounded bg-zinc-900 border border-zinc-700" />
-            </div>
-            <div>
-              <label className="block text-sm mb-1">Selesai</label>
-              <input type="datetime-local" name="end" value={form.end} onChange={onChange} required className="w-full p-2 rounded bg-zinc-900 border border-zinc-700" />
-            </div>
-          </div>
+          <DateTimeSlotPicker
+            valueStart={form.start}
+            valueEnd={form.end}
+            onChange={({ start, end }) => setForm(f => ({ ...f, start, end }))}
+            label="Pilih Tanggal & Slot Waktu"
+          />
           <button disabled={loading} className="bg-violet-700 hover:bg-violet-600 disabled:opacity-50 px-5 py-2 rounded">{loading ? 'Mengirim...' : 'Kirim Reservasi'}</button>
           {msg && (
             <div className={`text-sm ${msg.type === 'error' ? 'text-red-400' : 'text-green-400'}`}>{msg.text}</div>
