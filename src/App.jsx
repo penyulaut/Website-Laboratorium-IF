@@ -5,6 +5,7 @@ import CalendarPage from "./pages/Calendar";
 import ArticlesPage from "./pages/Articles";
 import ReservationPage from "./pages/Reservation";
 import LabStatusBar from "./components/LabStatusBar";
+import AdminPanel from "./pages/AdminPanel";
 
 function App() {
   return (
@@ -206,6 +207,8 @@ function App() {
         </div>
       </section>
       {/* Kontak Section End */}
+  {/* Admin Panel */}
+  <AdminPanel />
     </>
   );
 }
