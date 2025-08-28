@@ -1,5 +1,5 @@
 import heroimg from "./assets/heroimg.svg";
-import laptop from "./assets/laptop.jpg";
+// import laptop from "./assets/laptop.jpg";
 import komputer from "./assets/komputer.svg";
 import CalendarPage from "./pages/Calendar";
 import ArticlesPage from "./pages/Articles";
@@ -9,8 +9,8 @@ import LabStatusBar from "./components/LabStatusBar";
 function App() {
   return (
     <>
-  <LabStatusBar />
-  {/* Hero section Start */}
+      <LabStatusBar />
+      {/* Hero section Start */}
       <div className="hero grid md:grid-cols-2 items-center pt-10 xl:gap-0 gap-6 grid-cols-1">
         <div className="tekshero">
           <h1 className="lg:text-5xl/tight text-4xl/tight font-bold mb-6">
@@ -23,10 +23,17 @@ function App() {
             blanditiis, officiis, nam sint.
           </p>
           <div className="flex items-center sm:gap-4 gap-2">
-            <a href="#calendar" className="bg-violet-700 p-4 rounded-2xl hover:bg-violet-600">
-              Lihat Jadwal Praktikum <i className="ri-calendar-schedule-line ri-lg p-2"></i>
+            <a
+              href="#calendar"
+              className="bg-violet-700 p-4 rounded-2xl hover:bg-violet-600"
+            >
+              Lihat Jadwal Praktikum{" "}
+              <i className="ri-calendar-schedule-line ri-lg p-2"></i>
             </a>
-            <a href="#reservasi" className="bg-zinc-700 p-4 rounded-2xl hover:bg-zinc-600">
+            <a
+              href="#reservasi"
+              className="bg-zinc-700 p-4 rounded-2xl hover:bg-zinc-600"
+            >
               Reservasi Lab <i className="ri-service-line ri-lg p-2"></i>
             </a>
           </div>
@@ -130,8 +137,8 @@ function App() {
       </section>
       {/* Fasilitas Section End */}
 
-  {/* Articles dynamic */}
-  <ArticlesPage />
+      {/* Articles dynamic */}
+      <ArticlesPage />
 
       {/* Kalender Section */}
       <div className="kalender">
