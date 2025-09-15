@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
+import LabStatusBar from "./components/LabStatusBar.jsx";
 import AdminPanel from "./pages/AdminPanel.jsx";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -13,6 +14,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <div className="container mx-auto px-9">
+        <LabStatusBar />
         <Navbar />
         <Routes>
           <Route path="/" element={<App />} />

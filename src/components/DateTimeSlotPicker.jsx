@@ -17,7 +17,7 @@ const DEFAULT_SLOTS = [
   slots?: custom template slot array
   minuteStep?: number (for custom mode, default 15)
 */
-export default function DateTimeSlotPicker({ valueStart, valueEnd, onChange, label = 'Waktu', slots = DEFAULT_SLOTS, minuteStep = 15 }) {
+export default function DateTimeSlotPicker({ valueStart, valueEnd, onChange, label = 'Waktu', slots = DEFAULT_SLOTS, minuteStep = 15, allowCustom = true }) {
   const today = new Date().toISOString().slice(0,10);
   const initDate = valueStart ? valueStart.slice(0,10) : today;
   const [date, setDate] = useState(initDate);
@@ -51,14 +51,17 @@ export default function DateTimeSlotPicker({ valueStart, valueEnd, onChange, lab
   function two(n){ return n.toString().padStart(2,'0'); }
 
   function emit(startHHMM, endHHMM){
-    // Validasi waktu (end harus > start)
+    // Validasi waktu (end harus > start) tetap pakai Date tetapi hasil akhir TIDAK dikonversi ke UTC
     const startDate = new Date(`${date}T${startHHMM}:00`);
     let endDate = new Date(`${date}T${endHHMM}:00`);
     if (endDate <= startDate) {
-      // Auto adjust end (tambah minuteStep)
       endDate = new Date(startDate.getTime() + minuteStep*60000);
     }
-    onChange && onChange({ start: startDate.toISOString().slice(0,19), end: endDate.toISOString().slice(0,19) });
+    // Bentuk string lokal 'YYYY-MM-DDTHH:MM:SS' tanpa offset konversi
+    const startLocal = `${date}T${startHHMM}:00`;
+    const endLocal = `${date}T${endHHMM}:00`;
+    const labelVal = (mode === 'template' && slots[slotIndex]) ? slots[slotIndex].label : `${startHHMM} - ${endHHMM}`;
+    onChange && onChange({ start: startLocal, end: endLocal, label: labelVal, startHHMM, endHHMM, date });
   }
 
   // Analog-like circle hours (for custom start hour selection)
@@ -78,10 +81,12 @@ export default function DateTimeSlotPicker({ valueStart, valueEnd, onChange, lab
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <label className="text-xs uppercase tracking-wide text-zinc-400">{label}</label>
-        <div className="flex gap-2 text-[11px]">
-          <button type="button" onClick={()=>setMode('template')} className={`px-2 py-1 rounded ${mode==='template'?'bg-violet-600':'bg-zinc-800'} hover:bg-violet-600`}>Template</button>
-          <button type="button" onClick={()=>setMode('custom')} className={`px-2 py-1 rounded ${mode==='custom'?'bg-violet-600':'bg-zinc-800'} hover:bg-violet-600`}>Custom</button>
-        </div>
+        {allowCustom && (
+          <div className="flex gap-2 text-[11px]">
+            <button type="button" onClick={()=>setMode('template')} className={`px-2 py-1 rounded ${mode==='template'?'bg-violet-600':'bg-zinc-800'} hover:bg-violet-600`}>Template</button>
+            <button type="button" onClick={()=>setMode('custom')} className={`px-2 py-1 rounded ${mode==='custom'?'bg-violet-600':'bg-zinc-800'} hover:bg-violet-600`}>Custom</button>
+          </div>
+        )}
       </div>
       <div className="grid sm:grid-cols-2 gap-3">
         <input
