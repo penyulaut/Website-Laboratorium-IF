@@ -30,7 +30,7 @@ export default function LabStatusBar() {
 
   if (loading || !data) return null;
   return (
-    <div className={`w-full text-center py-2 text-xs md:text-sm font-medium tracking-wide ${data.open ? 'bg-green-700' : 'bg-red-700'}`}> 
+    <div className={`w-full text-center py-2 text-xs md:text-lg font-medium tracking-wide ${data.open ? 'bg-green-700' : 'bg-red-700'}`}> 
       Lab {data.open ? 'BUKA' : 'TUTUP'}
       {data.last && <span className="ml-2 opacity-80">(Update {data.last})</span>}
     </div>

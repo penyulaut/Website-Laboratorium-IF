@@ -9,7 +9,7 @@ import LabStatusBar from "./components/LabStatusBar";
 function App() {
   return (
     <>
-      <LabStatusBar />
+      {/* <LabStatusBar /> */}
       {/* Hero section Start */}
       <div className="hero grid md:grid-cols-2 items-center pt-10 xl:gap-0 gap-6 grid-cols-1">
         <div className="tekshero">
@@ -138,7 +138,10 @@ function App() {
       {/* Fasilitas Section End */}
 
       {/* Articles dynamic */}
-      <ArticlesPage />
+      <div className="aritkel">
+        <ArticlesPage />
+        <a href="/artikel">Lihat Selengkapnya</a>
+      </div>
 
       {/* Kalender Section */}
       <div className="kalender">

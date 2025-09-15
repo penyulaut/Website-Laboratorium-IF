@@ -6,9 +6,10 @@ import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import LabStatusBar from "./components/LabStatusBar.jsx";
 import AdminPanel from "./pages/AdminPanel.jsx";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ArtikelFull from "./pages/ArtikelFull.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import 'remixicon/fonts/remixicon.css'
+import "remixicon/fonts/remixicon.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -19,6 +20,7 @@ createRoot(document.getElementById("root")).render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/artikel" element={<ArtikelFull />} />
         </Routes>
         <Footer />
       </div>
