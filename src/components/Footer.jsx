@@ -13,7 +13,7 @@ const Footer = () => {
                     <a href="/#tentang" className="hover:text-white transition">About</a>
                     <a href="/#admin" className="hover:text-white transition hidden">Admin (legacy)</a>
                     <a href="/#kontak" className="hover:text-white transition">Contact</a>
-                    <a href="/admin" className="hover:text-white transition font-semibold border border-violet-600 px-3 py-1 rounded hover:bg-violet-600 hover:text-white">Admin</a>
+                    <a href="/admin" className="hover:text-white transition font-semibold border border-violet-600 px-3 py-1 rounded hover:bg-violet-600">Admin</a>
                 </div>
             </div>
         </footer>

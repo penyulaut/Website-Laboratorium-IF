@@ -9,7 +9,7 @@ import LabStatusBar from "./components/LabStatusBar";
 function App() {
   return (
     <>
-      {/* <LabStatusBar /> */}
+      <LabStatusBar />
       {/* Hero section Start */}
       <div className="hero grid md:grid-cols-2 items-center pt-10 xl:gap-0 gap-6 grid-cols-1">
         <div className="tekshero">
@@ -31,7 +31,7 @@ function App() {
               <i className="ri-calendar-schedule-line ri-lg p-2"></i>
             </a>
             <a
-              href="#reservasi"
+              href="/reservasi"
               className="bg-zinc-700 p-4 rounded-2xl hover:bg-zinc-600"
             >
               Reservasi Lab <i className="ri-service-line ri-lg p-2"></i>
@@ -138,7 +138,7 @@ function App() {
       {/* Fasilitas Section End */}
 
       {/* Articles dynamic */}
-      <div className="aritkel">
+      <div className="artikel">
         <ArticlesPage />
         <a href="/artikel">Lihat Selengkapnya</a>
       </div>
@@ -149,72 +149,99 @@ function App() {
       </div>
 
       {/* Reservation */}
-      <ReservationPage />
+      {/* <ReservationPage /> */}
 
       {/* Kontak Section Start */}
-      <section className="kontak py-9">
-        <div className="mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-extrabold text-violet-800 mb-4 pt-9">
-              Hubungi Kami
-            </h1>
-            <p className="text-lg">
-              Punya pertanyaan atau butuh bantuan? Jangan ragu untuk menghubungi
-              kami.
-            </p>
+      <section id="kontak" className="kontak py-12 bg-zinc-900">
+          {/* Form Kontak */}
+          <div className="text-center mb-12 px-4">
+              <h1 className="text-4xl font-extrabold text-violet-800 mb-4">
+                Hubungi Kami
+              </h1>
+              <p className="text-lg text-zinc-300">
+                Punya pertanyaan atau butuh bantuan? Jangan ragu untuk menghubungi kami.
+              </p>
           </div>
-          <form className="max-w-xl w-full mx-auto bg-zinc-800 p-6 rounded-lg shadow-lg">
-            <div className="mb-4">
-              <label
-                htmlFor="name"
-                className="block text-zinc-200 font-medium mb-2"
+        <div className="mx-auto px-4 grid md:grid-cols-2 gap-12 items-start">          
+          <div>            
+            <form className="bg-zinc-800 p-6 rounded-lg shadow-lg space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-zinc-200 font-medium mb-2">
+                  Nama
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  className="w-full px-3 py-2 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600"
+                  placeholder="Masukkan nama Anda"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-zinc-200 font-medium mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full px-3 py-2 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600"
+                  placeholder="Masukkan email Anda"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-zinc-200 font-medium mb-2">
+                  Pesan
+                </label>
+                <textarea
+                  id="message"
+                  rows="4"
+                  className="w-full px-3 py-2 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600"
+                  placeholder="Tulis pesan Anda di sini"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                className="bg-violet-700 text-white px-6 py-3 rounded-lg hover:bg-violet-600 transition-colors w-full"
               >
-                Nama
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="w-full px-3 py-2 border border-zinc-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600"
-                placeholder="Masukkan nama Anda"
-              />
+                Kirim Pesan
+              </button>
+            </form>
+          </div>
+
+          {/* Informasi Kontak */}
+          <div className="bg-zinc-800 p-6 rounded-lg shadow-lg text-zinc-200 space-y-6">
+            <h2 className="text-2xl font-bold text-violet-700 mb-4">Informasi Kontak</h2>
+            <div className="space-y-3">
+              <p className="flex items-center">
+                <span className="mr-2">📍</span> Jl. Contoh No.123, Jakarta
+              </p>
+              <p className="flex items-center">
+                <span className="mr-2">📞</span> +62 812 3456 7890
+              </p>
+              <p className="flex items-center">
+                <span className="mr-2">📧</span> info@contoh.com
+              </p>
+              <p className="flex items-center">
+                <span className="mr-2">⏰</span> Senin - Jumat, 09.00 - 17.00
+              </p>
             </div>
-            <div className="mb-4">
-              <label
-                htmlFor="email"
-                className="block text-zinc-200 font-medium mb-2"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="w-full px-3 py-2 border border-zinc-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600"
-                placeholder="Masukkan email Anda"
-              />
+
+            {/* Google Maps Embed */}
+            <div className="overflow-hidden rounded-lg">
+              <iframe
+                title="lokasi-kami"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.988272247151!2d106.02950537498853!3d-5.996345293988736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e418e2782651571%3A0x249411dd80bfd66e!2sEngineering%20Faculty%20of%20Sultan%20Ageng%20Tirtayasa%20University!5e0!3m2!1sen!2sid!4v1758068928572!5m2!1sen!2sid"
+                width="100%"
+                height="250"
+                className="border-0"
+                allowFullScreen=""
+                loading="lazy"
+              ></iframe>
             </div>
-            <div className="mb-4">
-              <label
-                htmlFor="message"
-                className="block text-zinc-200 font-medium mb-2"
-              >
-                Pesan
-              </label>
-              <textarea
-                id="message"
-                rows="4"
-                className="w-full px-3 py-2 border border-zinc-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600"
-                placeholder="Tulis pesan Anda di sini"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="bg-violet-700 text-white px-6 py-3 rounded-lg hover:bg-violet-600 transition-colors"
-            >
-              Kirim Pesan
-            </button>
-          </form>
+          </div>
         </div>
       </section>
+
+
       {/* Kontak Section End */}
     </>
   );

@@ -43,7 +43,9 @@ const Navbar = () => {
             <li><a href="/#articles" className="sm:text-lg text-base font-medium" onClick={()=>setMenuOpen(false)}>Artikel</a></li>
           <li><a href="/#calendar" className="sm:text-lg text-base font-medium" onClick={()=>setMenuOpen(false)}>Jadwal</a></li>
           <li><a href="/#kontak" className="sm:text-lg text-base font-medium" onClick={()=>setMenuOpen(false)}>Kontak</a></li>
-          <li><a href="/admin" className="sm:text-lg text-base font-medium text-violet-400 hover:text-violet-300" onClick={()=>setMenuOpen(false)}>Admin</a></li>
+          <button className="bg-violet-600 hover:bg-violet-700 px-4 py-2 rounded transition">
+            <li><a href="/admin" className="sm:text-lg text-base font-medium" onClick={()=>setMenuOpen(false)}>Admin</a></li>
+          </button>
         </ul>
       </div>
     </div>
