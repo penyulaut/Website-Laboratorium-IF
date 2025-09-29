@@ -1,3 +1,4 @@
+import { useState } from "react";
 import heroimg from "./assets/heroimg.svg";
 // import laptop from "./assets/laptop.jpg";
 import komputer from "./assets/komputer.svg";
@@ -7,6 +8,47 @@ import ReservationPage from "./pages/Reservation";
 import LabStatusBar from "./components/LabStatusBar";
 
 function App() {
+  const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:3000";
+  const [contactForm, setContactForm] = useState({ nama: "", email: "", pesan: "" });
+  const [contactMsg, setContactMsg] = useState(null);
+  const [contactSending, setContactSending] = useState(false);
+
+  const handleContactChange = (e) => {
+    const { name, value } = e.target;
+    setContactForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const submitContact = async (e) => {
+    e.preventDefault();
+    setContactMsg(null);
+    setContactSending(true);
+    try {
+      const res = await fetch(`${API_BASE}/kontak`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(contactForm),
+      });
+      let data = {};
+      try {
+        data = await res.json();
+      } catch (err) {
+        data = {};
+      }
+      if (!res.ok) {
+        throw new Error(data.message || "Gagal mengirim pesan");
+      }
+      setContactForm({ nama: "", email: "", pesan: "" });
+      setContactMsg({ type: "success", text: "Pesan berhasil dikirim." });
+    } catch (err) {
+      setContactMsg({
+        type: "error",
+        text: err?.message || "Gagal mengirim pesan",
+      });
+    } finally {
+      setContactSending(false);
+    }
+  };
+
   return (
     <>
       <LabStatusBar />
@@ -164,46 +206,64 @@ function App() {
           </div>
         <div className="mx-auto px-4 grid md:grid-cols-2 gap-12 items-start">          
           <div>            
-            <form className="bg-zinc-800 p-6 rounded-lg shadow-lg space-y-4">
+            <form onSubmit={submitContact} className="bg-zinc-800 p-6 rounded-lg shadow-lg space-y-4">
               <div>
-                <label htmlFor="name" className="block text-zinc-200 font-medium mb-2">
+                <label htmlFor="contact-name" className="block text-zinc-200 font-medium mb-2">
                   Nama
                 </label>
                 <input
                   type="text"
-                  id="name"
+                  id="contact-name"
+                  name="nama"
+                  value={contactForm.nama}
+                  onChange={handleContactChange}
+                  required
                   className="w-full px-3 py-2 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600"
                   placeholder="Masukkan nama Anda"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-zinc-200 font-medium mb-2">
+                <label htmlFor="contact-email" className="block text-zinc-200 font-medium mb-2">
                   Email
                 </label>
                 <input
                   type="email"
-                  id="email"
+                  id="contact-email"
+                  name="email"
+                  value={contactForm.email}
+                  onChange={handleContactChange}
+                  required
                   className="w-full px-3 py-2 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600"
                   placeholder="Masukkan email Anda"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-zinc-200 font-medium mb-2">
+                <label htmlFor="contact-message" className="block text-zinc-200 font-medium mb-2">
                   Pesan
                 </label>
                 <textarea
-                  id="message"
+                  id="contact-message"
+                  name="pesan"
                   rows="4"
+                  value={contactForm.pesan}
+                  onChange={handleContactChange}
+                  required
                   className="w-full px-3 py-2 border border-zinc-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-600"
                   placeholder="Tulis pesan Anda di sini"
-                ></textarea>
+                />
               </div>
               <button
                 type="submit"
-                className="bg-violet-700 text-white px-6 py-3 rounded-lg hover:bg-violet-600 transition-colors w-full"
+                disabled={contactSending}
+                className="bg-violet-700 text-white px-6 py-3 rounded-lg hover:bg-violet-600 transition-colors w-full disabled:opacity-60"
               >
-                Kirim Pesan
+                {contactSending ? "Mengirim..." : "Kirim Pesan"}
               </button>
+              {contactMsg && (
+                <p className={`text-sm ${contactMsg.type === "error" ? "text-red-400" : "text-green-400"}`}>
+                  {contactMsg.text}
+                </p>
+              )}
             </form>
           </div>
 

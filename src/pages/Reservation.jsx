@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import DateTimeSlotPicker from "../components/DateTimeSlotPicker";
 
 export default function ReservationPage() {
@@ -13,24 +13,7 @@ export default function ReservationPage() {
   const [slotLabel, setSlotLabel] = useState("");
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState(null);
-  const [labOpen, setLabOpen] = useState(true);
   const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3000';
-
-  // Ambil status lab (optional tapi membantu UX)
-  useEffect(() => {
-    let cancelled = false;
-    async function fetchStatus(){
-      try {
-        const r = await fetch(`${API_BASE}/status`);
-        if(!r.ok) return;
-        const d = await r.json();
-        if(!cancelled) setLabOpen(d.status === 'Buka');
-      } catch (_) {
-        // diamkan saja, tidak kritikal untuk kirim form
-      }
-    }
-    fetchStatus();
-  }, [API_BASE]);
 
   const onChange = (e) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -41,23 +24,17 @@ export default function ReservationPage() {
     setLoading(true);
     setMsg(null);
     try {
-      if(!API_BASE){
-        throw new Error('API_BASE tidak terdefinisi');
-      }
       if (!form.start || !form.end) {
         throw new Error('Pilih slot waktu terlebih dahulu');
       }
-      if (!labOpen) {
-        throw new Error('Lab sedang tutup. Reservasi tidak dapat dikirim.');
-      }
 
-      const tanggal = form.start.slice(0,10); // YYYY-MM-DD
-      const waktuMulai = form.start.slice(11,16); // HH:MM
+      const tanggal = form.start.slice(0,10);
+      const waktuMulai = form.start.slice(11,16);
       const waktuSelesai = form.end.slice(11,16);
 
       const payload = {
         nama: form.name,
-        nim: form.nim || undefined, // optional
+        nim: form.nim || undefined,
         email: form.email,
         keperluan: form.purpose,
         tanggal,
@@ -79,12 +56,12 @@ export default function ReservationPage() {
       }
       setMsg({ type: 'success', text: 'Reservasi terkirim. Status: Pending' });
       setForm(f => ({ ...f, purpose: '', start: '', end: '' }));
-    } catch (e) {
-      // Network failure (TypeError) sering dilaporkan sebagai 'Failed to fetch'
-      if (e.name === 'TypeError') {
-        setMsg({ type: 'error', text: 'Tidak dapat terhubung ke server. Pastikan backend berjalan di '+API_BASE });
+      setSlotLabel('');
+    } catch (e2) {
+      if (e2.name === 'TypeError') {
+        setMsg({ type: 'error', text: 'Tidak dapat terhubung ke server.' });
       } else {
-        setMsg({ type: 'error', text: e.message });
+        setMsg({ type: 'error', text: e2.message });
       }
     } finally {
       setLoading(false);
@@ -97,10 +74,7 @@ export default function ReservationPage() {
         <h1 className="text-4xl font-extrabold text-violet-800 mb-6">
           Reservasi Lab
         </h1>
-        <form
-          onSubmit={submit}
-          className="bg-zinc-800 p-6 rounded-xl space-y-4"
-        >
+        <form onSubmit={submit} className="bg-zinc-800 p-6 rounded-xl space-y-4">
           <div>
             <label className="block text-sm mb-1">Nama</label>
             <input
@@ -146,29 +120,24 @@ export default function ReservationPage() {
             valueEnd={form.end}
             allowCustom={false}
             onChange={({ start, end, label }) => {
-              setForm((f) => ({ ...f, start, end }));
+              setForm(f => ({ ...f, start, end }));
               setSlotLabel(label || "");
             }}
             label="Pilih Tanggal & Slot Waktu"
           />
           {slotLabel && (
-            <div className="text-xs text-zinc-400 -mt-2">Slot dipilih: {slotLabel}</div>
-          )}
-          {!labOpen && (
-            <div className="text-yellow-400 text-sm">Lab sedang TUTUP. Form dinonaktifkan.</div>
+            <div className="text-xs text-zinc-400 -mt-2">
+              Slot dipilih: {slotLabel}
+            </div>
           )}
           <button
-            disabled={loading || !labOpen}
+            disabled={loading}
             className="bg-violet-700 hover:bg-violet-600 disabled:opacity-50 px-5 py-2 rounded"
           >
             {loading ? "Mengirim..." : "Kirim Reservasi"}
           </button>
           {msg && (
-            <div
-              className={`text-sm ${
-                msg.type === "error" ? "text-red-400" : "text-green-400"
-              }`}
-            >
+            <div className={`text-sm ${msg.type === 'error' ? 'text-red-400' : 'text-green-400'}`}>
               {msg.text}
             </div>
           )}

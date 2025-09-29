@@ -30,6 +30,7 @@ const resvRoute = require('./routes/resvRoute');
 const authRoutes = require('./routes/authRoute');
 const { authRequired } = require('./middleware/authMiddleware');
 const authController = require('./controller/authController');
+const kontakRoute = require('./routes/kontakRoute');
 
 // Inisialisasi admin default jika kosong
 authController.init();
@@ -38,6 +39,7 @@ app.use('/auth', authRoutes);
 app.use('/status', statusRoute); // nanti akan proteksi PATCH di route file
 app.use('/artikel', artikelRoute); // proteksi non-GET di route file
 app.use('/reservasi', resvRoute); // proteksi update status via route file
+app.use('/kontak', kontakRoute);
 
 
 

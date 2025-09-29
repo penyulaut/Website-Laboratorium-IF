@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export default function AdminPanel() {
-  const API_BASE = import.meta.env.VITE_API_BASE;
+  const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:3000";
   const [token, setToken] = useState(
     () => localStorage.getItem("adm_token") || ""
   );
@@ -20,6 +20,8 @@ export default function AdminPanel() {
   const [resvFilter, setResvFilter] = useState('Pending');
   const [newAdminForm, setNewAdminForm] = useState({ email:'', password:'', role:'admin' });
   const [admins, setAdmins] = useState([]);
+  const [contactMessages, setContactMessages] = useState([]);
+  const [contactLoading, setContactLoading] = useState(false);
 
   const authHeaders = token ? { Authorization: `Bearer ${token}` } : {};
 
@@ -56,6 +58,22 @@ export default function AdminPanel() {
     }
   }
 
+  async function loadKontak(){
+    if(!token) return;
+    setContactLoading(true);
+    try {
+      const res = await authFetch(`${API_BASE}/kontak`);
+      const data = await res.json();
+      if(!res.ok) throw new Error(data.message || 'Gagal memuat pesan kontak');
+      setContactMessages(Array.isArray(data) ? data : []);
+    } catch (e) {
+      console.error(e);
+      setMessage({ type: 'error', text: e.message });
+    } finally {
+      setContactLoading(false);
+    }
+  }
+
   async function fetchAdmins(){
     if(!token) return;
     try {
@@ -65,8 +83,15 @@ export default function AdminPanel() {
       setAdmins(Array.isArray(data)? data: []);
     } catch(e){ /* ignore */ }
   }
-
-  useEffect(()=>{ fetchAdmins(); }, [token]);
+  useEffect(() => {
+    if (token) {
+      fetchAdmins();
+      loadKontak();
+    } else {
+      setAdmins([]);
+      setContactMessages([]);
+    }
+  }, [token]);
 
   const login = async (e) => {
     e.preventDefault();
@@ -84,7 +109,6 @@ export default function AdminPanel() {
       localStorage.setItem("adm_token", data.token);
       if(data.role) localStorage.setItem('adm_role', data.role);
       setMessage({ type: "success", text: "Login sukses" });
-      fetchAdmins();
     } catch (e) {
       setMessage({ type: "error", text: e.message });
     }
@@ -231,7 +255,10 @@ export default function AdminPanel() {
               <button
                 onClick={() => {
                   setToken("");
+                  setRole("");
+                  setContactMessages([]);
                   localStorage.removeItem("adm_token");
+                  localStorage.removeItem("adm_role");
                 }}
                 className="text-xs text-red-400 hover:text-red-300 underline"
               >
@@ -355,6 +382,35 @@ export default function AdminPanel() {
                       {r.status !== 'Pending' && <button onClick={()=>updateResvStatus(r._id,'Pending')} className="px-2 py-1 bg-yellow-700 hover:bg-yellow-600 rounded" type="button">Reset</button>}
                       <button onClick={()=>deleteResv(r._id)} className="px-2 py-1 bg-zinc-700 hover:bg-zinc-600 rounded" type="button">Hapus</button>
                     </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="bg-zinc-800 p-6 rounded-xl space-y-3">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold text-violet-400">Pesan Kontak</h2>
+                <button
+                  type="button"
+                  onClick={loadKontak}
+                  className="px-3 py-1 bg-violet-700 hover:bg-violet-600 rounded text-xs"
+                >
+                  Refresh
+                </button>
+              </div>
+              {contactLoading && <p className="text-sm text-zinc-400">Memuat...</p>}
+              {!contactLoading && contactMessages.length === 0 && (
+                <p className="text-sm text-zinc-500">Belum ada pesan.</p>
+              )}
+              <div className="space-y-3 max-h-80 overflow-auto pr-2">
+                {contactMessages.map((msg) => (
+                  <div key={msg._id} className="border border-zinc-700 rounded p-3 text-sm bg-zinc-900">
+                    <div className="flex justify-between text-[11px] text-zinc-400 mb-1">
+                      <span>{msg.email}</span>
+                      <span>{msg.tanggal ? new Date(msg.tanggal).toLocaleString() : ''}</span>
+                    </div>
+                    <div className="text-violet-300 font-semibold text-sm">{msg.nama}</div>
+                    <p className="text-zinc-200 whitespace-pre-wrap mt-1">{msg.pesan}</p>
                   </div>
                 ))}
               </div>
