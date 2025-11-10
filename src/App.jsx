@@ -1,15 +1,23 @@
 import { useState } from "react";
-import heroimg from "./assets/heroimg.svg";
+import heroimg from "./assets/heroimg.webp";
 // import laptop from "./assets/laptop.jpg";
 import komputer from "./assets/komputer.svg";
+import network from "./assets/network.svg";
+import riset from "./assets/riset.svg";
+import fotbar from "./assets/fotbar.jpg"
 import CalendarPage from "./pages/Calendar";
 import ArticlesPage from "./pages/Articles";
 import ReservationPage from "./pages/Reservation";
 import LabStatusBar from "./components/LabStatusBar";
+import Pengurus from "./pages/Pengurus";
 
 function App() {
   const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:3000";
-  const [contactForm, setContactForm] = useState({ nama: "", email: "", pesan: "" });
+  const [contactForm, setContactForm] = useState({
+    nama: "",
+    email: "",
+    pesan: "",
+  });
   const [contactMsg, setContactMsg] = useState(null);
   const [contactSending, setContactSending] = useState(false);
 
@@ -59,10 +67,10 @@ function App() {
             Asisten Laboratorium Informatika
           </h1>
           <p className="pb-4 lg:text-xl text-lg">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-            consectetur distinctio repudiandae ad fugiat hic laborum, dicta
-            corrupti repellendus cum id nemo ducimus expedita illum ut
-            blanditiis, officiis, nam sint.
+            Kami hadir untuk membantu kelancaran kegiatan praktikum Informatika.
+            Dari pengelolaan laboratorium hingga bimbingan teknis, Asisten Lab
+            siap menjadi mitra belajar yang mendukung peningkatan keterampilan
+            mahasiswa.
           </p>
           <div className="flex items-center sm:gap-4 gap-2">
             <a
@@ -80,7 +88,7 @@ function App() {
             </a>
           </div>
         </div>
-        <img src={heroimg} alt="Hero" />
+        <img src={heroimg} alt="Hero" className="w-2xl"/>
       </div>
       {/* Hero Section End */}
 
@@ -93,7 +101,7 @@ function App() {
             </h1>
             <div className="flex justify-between gap-6 pt-5">
               <div>
-                <img src={heroimg} alt="" className="w-500" />
+                <img src={fotbar} alt="" className="w-500" />
               </div>
               <div className="">
                 <p className="text-lg">
@@ -108,7 +116,7 @@ function App() {
                 </p>
                 <div className="mt-6">
                   <a
-                    href=""
+                    href="/Pengurus"
                     className="bg-violet-700 p-5 rounded-2xl hover:bg-violet-600"
                   >
                     Lihat Kepengurusan <i className="ri-team-fill ri-lg"></i>
@@ -133,7 +141,7 @@ function App() {
               kegiatan praktikum dan riset Anda.
             </p>
           </div>
-          <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+          <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
             <div className="p-6 text-center">
               <img src={komputer} alt="" />
               <h2 className="text-2xl font-semibold text-violet-700 mb-2 mt-3">
@@ -145,7 +153,7 @@ function App() {
               </p>
             </div>
             <div className="p-6 text-center">
-              <img src={komputer} alt="" />
+              <img src={network} alt="" />
               <h2 className="text-2xl font-semibold text-violet-700 mb-2 mt-3">
                 Perangkat Jaringan
               </h2>
@@ -155,7 +163,7 @@ function App() {
               </p>
             </div>
             <div className="p-6 text-center">
-              <img src={komputer} alt="" />
+              <img src={riset} alt="" />
               <h2 className="text-2xl font-semibold text-violet-700 mb-2 mt-3">
                 Laboratorium Riset
               </h2>
@@ -163,17 +171,7 @@ function App() {
                 Ruang khusus untuk riset dengan peralatan canggih dan dukungan
                 teknis.
               </p>
-            </div>
-            <div className="p-6 text-center">
-              <img src={komputer} alt="" />
-              <h2 className="text-2xl font-semibold text-violet-700 mb-2 mt-3">
-                Perpustakaan Digital
-              </h2>
-              <p className="text-white">
-                Akses ke berbagai sumber belajar digital dan jurnal ilmiah
-                terbaru.
-              </p>
-            </div>
+            </div>            
           </div>
         </div>
       </section>
@@ -195,20 +193,27 @@ function App() {
 
       {/* Kontak Section Start */}
       <section id="kontak" className="kontak py-12 bg-zinc-900">
-          {/* Form Kontak */}
-          <div className="text-center mb-12 px-4">
-              <h1 className="text-4xl font-extrabold text-violet-800 mb-4">
-                Hubungi Kami
-              </h1>
-              <p className="text-lg text-zinc-300">
-                Punya pertanyaan atau butuh bantuan? Jangan ragu untuk menghubungi kami.
-              </p>
-          </div>
-        <div className="mx-auto px-4 grid md:grid-cols-2 gap-12 items-start">          
-          <div>            
-            <form onSubmit={submitContact} className="bg-zinc-800 p-6 rounded-lg shadow-lg space-y-4">
+        {/* Form Kontak */}
+        <div className="text-center mb-12 px-4">
+          <h1 className="text-4xl font-extrabold text-violet-800 mb-4">
+            Hubungi Kami
+          </h1>
+          <p className="text-lg text-zinc-300">
+            Punya pertanyaan atau butuh bantuan? Jangan ragu untuk menghubungi
+            kami.
+          </p>
+        </div>
+        <div className="mx-auto px-4 grid md:grid-cols-2 gap-12 items-start">
+          <div>
+            <form
+              onSubmit={submitContact}
+              className="bg-zinc-800 p-6 rounded-lg shadow-lg space-y-4"
+            >
               <div>
-                <label htmlFor="contact-name" className="block text-zinc-200 font-medium mb-2">
+                <label
+                  htmlFor="contact-name"
+                  className="block text-zinc-200 font-medium mb-2"
+                >
                   Nama
                 </label>
                 <input
@@ -223,7 +228,10 @@ function App() {
                 />
               </div>
               <div>
-                <label htmlFor="contact-email" className="block text-zinc-200 font-medium mb-2">
+                <label
+                  htmlFor="contact-email"
+                  className="block text-zinc-200 font-medium mb-2"
+                >
                   Email
                 </label>
                 <input
@@ -238,7 +246,10 @@ function App() {
                 />
               </div>
               <div>
-                <label htmlFor="contact-message" className="block text-zinc-200 font-medium mb-2">
+                <label
+                  htmlFor="contact-message"
+                  className="block text-zinc-200 font-medium mb-2"
+                >
                   Pesan
                 </label>
                 <textarea
@@ -260,7 +271,13 @@ function App() {
                 {contactSending ? "Mengirim..." : "Kirim Pesan"}
               </button>
               {contactMsg && (
-                <p className={`text-sm ${contactMsg.type === "error" ? "text-red-400" : "text-green-400"}`}>
+                <p
+                  className={`text-sm ${
+                    contactMsg.type === "error"
+                      ? "text-red-400"
+                      : "text-green-400"
+                  }`}
+                >
                   {contactMsg.text}
                 </p>
               )}
@@ -269,16 +286,18 @@ function App() {
 
           {/* Informasi Kontak */}
           <div className="bg-zinc-800 p-6 rounded-lg shadow-lg text-zinc-200 space-y-6">
-            <h2 className="text-2xl font-bold text-violet-700 mb-4">Informasi Kontak</h2>
+            <h2 className="text-2xl font-bold text-violet-700 mb-4">
+              Informasi Kontak
+            </h2>
             <div className="space-y-3">
               <p className="flex items-center">
-                <span className="mr-2">📍</span> Jl. Contoh No.123, Jakarta
+                <span className="mr-2">📍</span> Jl. Jend. Sudirman No.KM. 3, Kotabumi, Kec. Purwakarta, Kota Cilegon, Banten 42435
               </p>
               <p className="flex items-center">
-                <span className="mr-2">📞</span> +62 812 3456 7890
+                <span className="mr-2">📞</span> +62 821-1840-1473
               </p>
               <p className="flex items-center">
-                <span className="mr-2">📧</span> info@contoh.com
+                <span className="mr-2">📧</span> lab.infotirta@gmail.com
               </p>
               <p className="flex items-center">
                 <span className="mr-2">⏰</span> Senin - Jumat, 09.00 - 17.00
@@ -300,7 +319,6 @@ function App() {
           </div>
         </div>
       </section>
-
 
       {/* Kontak Section End */}
     </>

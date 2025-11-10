@@ -8,6 +8,7 @@ import LabStatusBar from "./components/LabStatusBar.jsx";
 import AdminPanel from "./pages/AdminPanel.jsx";
 import ArtikelFull from "./pages/ArtikelFull.jsx";
 import Reservation from "./pages/Reservation.jsx";
+import Pengurus from "./pages/Pengurus.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "remixicon/fonts/remixicon.css";
@@ -23,6 +24,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/artikel" element={<ArtikelFull />} />
           <Route path="/reservasi" element={<Reservation />} />
+          <Route path="/pengurus" element={<Pengurus />} />
         </Routes>
         <Footer />
       </div>
