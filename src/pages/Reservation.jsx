@@ -13,7 +13,7 @@ export default function ReservationPage() {
   const [slotLabel, setSlotLabel] = useState("");
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState(null);
-  const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3000';
+  const API_BASE = import.meta.env.VITE_API_BASE;
 
   const onChange = (e) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));

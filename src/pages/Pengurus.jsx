@@ -3,12 +3,17 @@ import React, { Component } from "react";
 export class Pengurus extends Component {
   render() {
     const dataPengurus = [
-      { nama: "Ripan Laksmana Putra", nim: "22312001", jabatan: "Koordinator Asisten" },
-      { nama: "Salsabila Putri", nim: "22312002", jabatan: "Wakil Koordinator" },
-      { nama: "Fadli Ramadhan", nim: "22312003", jabatan: "Asisten Jaringan" },
-      { nama: "Dewi Lestari", nim: "22312004", jabatan: "Asisten Basis Data" },
-      { nama: "Andi Pratama", nim: "22312005", jabatan: "Asisten Pemrograman" },
-      { nama: "Nadia Aulia", nim: "22312006", jabatan: "Asisten Multimedia" },
+      { nama: "Alim Hardiansyah S.T., M.Kom.", nim: "-", jabatan: "Kepala Lab" },
+      { nama: "Ardika Aji Setiawan", nim: "3337220097", jabatan: "Koordinator Umum" },
+      { nama: "Setiawan Permana", nim: "3337220095", jabatan: "Wakil Koordinator" },
+      { nama: "Mutiara Sandi", nim: "3337220100", jabatan: "AFO" },
+      { nama: "Josua Estomihi Pakpahan ", nim: "3337220040", jabatan: "Academia" },
+      { nama: "Ripan Laksmana Putra", nim: "3337230037", jabatan: "Public Relation" },
+      { nama: "Muhammad Adli Nursah", nim: "3337220059", jabatan: "Public Relation" },
+      { nama: "Widi Tri Nurhasanah", nim: "3337220080", jabatan: "MediaOps" },
+      { nama: "Azizah Siti Nurafiah", nim: "3337230083", jabatan: "MediaOps" },
+      { nama: "Mujadid Akbar Paryono", nim: "3337230089", jabatan: "TechOps" },
+      { nama: "Mukhlis Gia tegar", nim: "3337220060", jabatan: "TechOps" },
     ];
 
     return (

@@ -12,7 +12,7 @@ import LabStatusBar from "./components/LabStatusBar";
 import Pengurus from "./pages/Pengurus";
 
 function App() {
-  const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:3000";
+  const API_BASE = import.meta.env.VITE_API_BASE;
   const [contactForm, setContactForm] = useState({
     nama: "",
     email: "",

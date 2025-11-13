@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export default function AdminPanel() {
-  const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:3000";
+  const API_BASE = import.meta.env.VITE_API_BASE;
   const [token, setToken] = useState(
     () => localStorage.getItem("adm_token") || ""
   );
